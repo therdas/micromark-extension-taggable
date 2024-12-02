@@ -17,10 +17,8 @@
   },
   "license": "MIT",
   "repository": "https://github.com/therdas/micromark-extension-taggable",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "browser": "dist/index.umd.js",
   "type": "module",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint src/",
@@ -31,6 +29,10 @@
   },
   "jest": {
     "collectCoverage": true,
+    "coveragePathIgnorePatterns": [
+      "node_modules",
+      "<rootDir>/src/index.d.ts"
+    ],
     "collectCoverageFrom": [
       "./src/**"
     ],
@@ -42,6 +44,7 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.25.9",
+    "@babel/plugin-transform-typescript": "^7.25.9",
     "@babel/preset-env": "^7.26.0",
     "@eslint/js": "^9.16.0",
     "@rollup/plugin-babel": "^6.0.4",
@@ -54,9 +57,15 @@
     "micromark": "^4.0.1",
     "micromark-util-character": "^2.1.1",
     "micromark-util-symbol": "^2.0.1",
+    "micromark-util-types": "^2.0.1",
     "prettier": "^3.4.1",
     "rollup": "^4.28.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-typescript2": "^0.36.0",
     "ts-jest": "^29.2.5",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
   }
 }

@@ -1,7 +1,6 @@
 import { test, expect, describe } from "@jest/globals";
 import { micromark } from "micromark";
-import { html } from "./lib/html.js";
-import { syntax } from "./lib/syntax.js";
+import { html, syntax } from "./index";
 
 describe("parsing taggabled with default options", () => {
   const options = {
@@ -9,12 +8,12 @@ describe("parsing taggabled with default options", () => {
       {
         marker: "#",
         type: "tag",
-        toUrl: (argument) => `/tag/${argument}`,
+        toUrl: (val) => `/tag/${val}`,
       },
       {
         marker: "@",
         type: "mention",
-        toUrl: (argument) => `/user/${argument}`,
+        toUrl: (val) => `/user/${val}`,
       },
     ],
   };
@@ -101,12 +100,12 @@ describe("parsing taggables with custom options", () => {
       {
         marker: "!",
         type: "toDo",
-        toUrl: (argument) => `/toDo/${argument}`,
+        toUrl: (val) => `/toDo/${val}`,
       },
       {
         marker: "$",
         type: "abs",
-        toUrl: (argument) => `/abs/${argument}`,
+        toUrl: (val) => `/abs/${val}`,
       },
     ],
   };
@@ -140,12 +139,12 @@ describe("using custom global class names", () => {
       {
         marker: "#",
         type: "tag",
-        toUrl: (argument) => `/tag/${argument}`,
+        toUrl: (val) => `/tag/${val}`,
       },
       {
         marker: "@",
         type: "mention",
-        toUrl: (argument) => `/user/${argument}`,
+        toUrl: (val) => `/user/${val}`,
       },
     ],
     classes: ["custom", "bespoke"],
@@ -178,13 +177,13 @@ describe("using custom global/local class names", () => {
       {
         marker: "#",
         type: "tag",
-        toUrl: (argument) => `/tag/${argument}`,
+        toUrl: (val) => `/tag/${val}`,
         classes: ["tagged"],
       },
       {
         marker: "@",
         type: "mention",
-        toUrl: (argument) => `/user/${argument}`,
+        toUrl: (val) => `/user/${val}`,
         classes: ["mentioned"],
       },
     ],
@@ -223,7 +222,7 @@ describe("parsing taggables with emailAllowed as True", () => {
       {
         marker: "#",
         type: "tag",
-        toUrl: (argument) => `/tags/${argument}`,
+        toUrl: (val) => `/tags/${val}`,
       },
     ],
     emailAllowed: true,

@@ -1,28 +1,14 @@
-const defaultRules = [
-  {
-    marker: "#",
-    type: "tag",
-    toUrl: (argument) => `/tags/${argument}`,
-    classes: ["tag"],
-  },
-  {
-    marker: "@",
-    type: "mention",
-    toUrl: (argument) => `/users/${argument}`,
-    classes: ["mention"],
-  },
-];
+import { defaultOptions } from "./options";
 
-export function html(options) {
-  options = options ? options : {};
-  const rules = options.rules || defaultRules;
+export function html(opts) {
+  opts = opts ? opts : defaultOptions;
   const markers = [];
   const typeMap = new Map();
   const urlResolverMap = new Map();
-  const cls = options.classes || ["micromark-taggable"];
+  const cls = opts.classes ? opts.classes : ["micromark-taggable"];
   const clsMap = new Map();
 
-  for (const i of rules) {
+  for (const i of opts.rules) {
     markers.push(i.marker);
     typeMap.set(i.marker, i.type);
     urlResolverMap.set(i.marker, i.toUrl);
@@ -76,9 +62,11 @@ export function html(options) {
 
   return {
     enter: {
+      //@ts-expect-error
       taggable: enterTaggable,
     },
     exit: {
+      //@ts-expect-error
       taggableMarker: exitTaggableMarker,
       taggableValue: exitTaggableValue,
       taggable: exitTaggable,

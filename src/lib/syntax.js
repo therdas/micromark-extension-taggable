@@ -1,27 +1,13 @@
-import { markdownLineEnding } from "micromark-util-character";
 import { codes } from "micromark-util-symbol";
+import { defaultOptions } from "./options";
+import { markdownLineEnding } from "micromark-util-character";
 
-const defaultRules = [
-  {
-    marker: "#",
-    type: "tag",
-    toUrl: (argument) => `/tags/${argument}`,
-    classes: ["tag"],
-  },
-  {
-    marker: "@",
-    type: "mention",
-    toUrl: (argument) => `/users/${argument}`,
-    classes: ["mention"],
-  },
-];
-
-export function syntax(options) {
-  options = options ? options : {};
-  const rules = options.rules || defaultRules;
+export function syntax(opts) {
+  opts = opts ? opts : defaultOptions;
+  const rules = opts.rules;
   const markers = [];
   const typeMap = new Map();
-  const emailAllowed = options.emailAllowed || false;
+  const allowEmail = opts.emailAllowed || false;
 
   for (const i of rules) {
     markers.push(i.marker);
@@ -58,7 +44,7 @@ export function syntax(options) {
       if (
         markdownLineEnding(code) ||
         code === codes.eof ||
-        !(emailAllowed
+        !(allowEmail
           ? /[\p{L}\p{M}@.]/u.test(String.fromCodePoint(code))
           : /[\p{L}\p{M}]/u.test(String.fromCodePoint(code)))
       ) {
@@ -77,6 +63,7 @@ export function syntax(options) {
   for (const i of markers) {
     const text = {};
     text[i.codePointAt(0)] = { tokenize };
+
     extensions.push({
       text,
     });

@@ -1,51 +1,28 @@
 import commonjs from "@rollup/plugin-commonjs";
-import babel from "@rollup/plugin-babel";
-import pkg from "./package.json" with { type: "json" };
-import typescript from "rollup-plugin-typescript2";
-import nodeResolve from "@rollup/plugin-node-resolve";
+import resolve from "@rollup/plugin-node-resolve";
+import PeerDepsExternal from "rollup-plugin-peer-deps-external";
+import copy from "rollup-plugin-copy"
 
-const config = [
-  {
-    input: "src/index.js",
-    output: {
-      file: pkg.browser,
+const config = {
+  input: "src/index.js",
+  output: [
+    {
+      file: "dist/index.cjs.js",
+      format: "cjs",
+      sourcemap: true,
+    },
+    {
+      file: "dist/index.esm.js",
       format: "esm",
+      sourcemap: true,
     },
-    plugins: [
-      commonjs(),
-      babel({
-        babelHelpers: "runtime",
-        exclude: ["node_modules/**"],
-      }),
-      nodeResolve(),
-    ],
-    external(id) {
-      return /@babel\/runtime/.test(id);
-    },
-  },
-  {
-    input: "src/index.js",
-    output: [
-      {
-        file: pkg.main,
-        format: "cjs",
-      },
-      {
-        file: pkg.module,
-        format: "es",
-      },
-    ],
-    plugins: [
-      babel({
-        babelHelpers: "runtime",
-        exclude: ["node_modules/**"],
-      }),
-      nodeResolve(),
-    ],
-    external(id) {
-      return /@babel\/runtime/.test(id);
-    },
-  },
-];
+  ],
+  plugins: [PeerDepsExternal(), resolve(), commonjs(), copy({
+    targets: [
+      { src: "src/index.d.ts", dest: 'dist/'}
+    ]
+  })],
+}
+
 
 export default config;
