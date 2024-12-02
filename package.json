@@ -19,6 +19,12 @@
   "repository": "https://github.com/therdas/micromark-extension-taggable",
   "type": "module",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint src/",
