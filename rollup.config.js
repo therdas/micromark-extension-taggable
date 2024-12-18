@@ -1,10 +1,7 @@
-import commonjs from "@rollup/plugin-commonjs";
-import resolve from "@rollup/plugin-node-resolve";
-import PeerDepsExternal from "rollup-plugin-peer-deps-external";
-import copy from "rollup-plugin-copy";
+import typescript from "@rollup/plugin-typescript";
 
 const config = {
-  input: "src/index.js",
+  input: "src/index.ts",
   output: [
     {
       file: "dist/index.js",
@@ -21,14 +18,7 @@ const config = {
       sourcemap: true,
     },
   ],
-  plugins: [
-    PeerDepsExternal(),
-    resolve(),
-    commonjs(),
-    copy({
-      targets: [{ src: "src/index.d.ts", dest: "dist/" }],
-    }),
-  ],
+  plugins: [typescript()],
 };
 
 export default config;

@@ -1,18 +1,7 @@
-import globals from "globals";
-import js from "@eslint/js";
+import eslint from "@eslint/js";
+import tseslint from "typescript-eslint";
 
-const config = [
-  js.configs.recommended,
-  {
-    languageOptions: {
-      ecmaVersion: 2021,
-      sourceType: "module",
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
-    },
-  },
-];
-
-export default config;
+export default tseslint.config(
+  eslint.configs.recommended,
+  tseslint.configs.recommended,
+);

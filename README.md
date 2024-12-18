@@ -11,6 +11,7 @@
 - [Configuration Options](#configuration-options)
 - [Authoring](#authoring)
 - [Syntax](#syntax)
+- [Changes](#changes)
 - [License](#license)
 
 ## What is this?
@@ -86,7 +87,7 @@ import { micromark } from "micromark";
 import { syntax, html } from "micromark-extension-taggable";
 
 const output = micromark("#tag", {
-  extensions: [...syntax()],
+  extensions: [syntax()],
   htmlExtensions: [html()],
 });
 
@@ -96,10 +97,7 @@ console.log(output);
 Yields:
 
 ```html
-<ul>
-  <li><input type="checkbox" disabled="" checked="" /> a</li>
-  <li><input type="checkbox" disabled="" /> b</li>
-</ul>
+<p><a href="/tags/tag" class="micromark-taggable tag">#tag</a></p>
 ```
 
 ## Configuration Options
@@ -209,40 +207,10 @@ Where both `<marker>` and `<text>` can be specified via options.
 
 [MIT][license] © [Rahul Das][author]
 
-<!-- Definitions -->
+## Changes
 
-[build-badge]: https://github.com/micromark/micromark-extension-gfm-task-list-item/workflows/main/badge.svg
-[build]: https://github.com/micromark/micromark-extension-gfm-task-list-item/actions
-[coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark-extension-gfm-task-list-item.svg
-[coverage]: https://codecov.io/github/micromark/micromark-extension-gfm-task-list-item
-[downloads-badge]: https://img.shields.io/npm/dm/micromark-extension-gfm-task-list-item.svg
-[downloads]: https://www.npmjs.com/package/micromark-extension-gfm-task-list-item
-[size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-extension-gfm-task-list-item
-[size]: https://bundlejs.com/?q=micromark-extension-gfm-task-list-item
-[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
-[backers-badge]: https://opencollective.com/unified/backers/badge.svg
-[collective]: https://opencollective.com/unified
-[chat-badge]: https://img.shields.io/badge/chat-discussions-success.svg
-[chat]: https://github.com/micromark/micromark/discussions
-[npm]: https://docs.npmjs.com/cli/install
-[esmsh]: https://esm.sh
-[license]: license
-[author]: https://wooorm.com
-[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
-[support]: https://github.com/micromark/.github/blob/main/support.md
-[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
-[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
-[typescript]: https://www.typescriptlang.org
-[development]: https://nodejs.org/api/packages.html#packages_resolving_user_conditions
-[micromark]: https://github.com/micromark/micromark
-[micromark-html-extension]: https://github.com/micromark/micromark#htmlextension
-[micromark-extension]: https://github.com/micromark/micromark#syntaxextension
-[micromark-extension-gfm]: https://github.com/micromark/micromark-extension-gfm
-[mdast-util-gfm-task-list-item]: https://github.com/syntax-tree/mdast-util-gfm-task-list-item
-[mdast-util-gfm]: https://github.com/syntax-tree/mdast-util-gfm
-[remark-gfm]: https://github.com/remarkjs/remark-gfm
-[task list items]: https://github.github.com/gfm/#task-list-items-extension-
-[github-markdown-css]: https://github.com/sindresorhus/github-markdown-css
-[html-input-checkbox]: https://html.spec.whatwg.org/multipage/input.html#checkbox-state-(type=checkbox)
-[api-gfm-task-list-item]: #gfmtasklistitem
-[api-gfm-task-list-item-html]: #gfmtasklistitemhtml
+- `v1.0.0`:
+  - Moved the library over to TypeScript.
+  - ⚠️ **Breaking Change**: The library now supplies an `Extension` instead of an `Array<Extension>`. There is now no need for using the spread operator when passing the `syntax` extension
+
+Please refer to the [changelog](CHANGELOG.md) for more information regarding changes
