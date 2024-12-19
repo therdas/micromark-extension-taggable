@@ -1,0 +1,12 @@
+node_modules
+coverage
+src
+.gitignore
+.npmignore
+.prettierignore
+.prettierrc
+eslint.config.js
+jest.config.ts
+rollup.config.js
+tsconfig.json
+dist/testenv.d.ts

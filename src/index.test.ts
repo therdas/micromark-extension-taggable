@@ -2,18 +2,21 @@ import { test, expect, describe } from "@jest/globals";
 import { micromark } from "micromark";
 import { html, syntax } from "./index";
 import { defaultOptions, Options } from "./lib/options";
+import { data } from "./testenv";
 
 describe("parsing taggabled with default options", () => {
   const options = defaultOptions;
 
-  test("can parse tags into links without Options", () => {
-    console.log(
-      micromark("#tag", {
-        extensions: [syntax()],
-        htmlExtensions: [html()],
-      }),
-    );
+  test("can parse a huge file", () => {
+    const dat = micromark(data, {
+      extensions: [syntax()],
+      htmlExtensions: [html()],
+    });
+    console.log(dat);
+    expect(true).toBeTruthy();
+  });
 
+  test("can parse tags into links without Options", () => {
     expect(
       micromark("#tag", {
         extensions: [syntax()],

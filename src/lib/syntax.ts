@@ -46,7 +46,7 @@ export function syntax(opts: Options = defaultOptions): Extension {
 
       effects.enter("taggable");
       effects.enter("taggableMarker");
-      return consumeMarker;
+      return consumeMarker(code);
     }
 
     function consumeMarker(code: Code) {

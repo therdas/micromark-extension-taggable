@@ -1,8 +1,16 @@
 # Changelog
 
+## 1.0.1
+### Changes
+- Made some changes to reduce the size of the npm bundle
+
+### Bug Fixes 
+- Fixed an issue that can generate due to a token not being consumed.
+- Deprecated version 1.0.0 as the above patch should be considered **important**.
+
 ## 1.0.0
 
-### Changes:
+### Changes
 
 - Moved the library over to TypeScript.
 - ⚠️ **Breaking Change**: The library now supplies an `Extension` instead of an `Array<Extension>`. There is now no need for using the spread operator when passing the `syntax` extension
