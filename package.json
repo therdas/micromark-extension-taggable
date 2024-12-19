@@ -1,6 +1,6 @@
 {
   "name": "micromark-extension-taggable",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parse and Render custom #tags and @mentions",
   "keywords": [
     "remark",

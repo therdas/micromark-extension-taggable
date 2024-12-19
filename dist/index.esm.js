@@ -40,7 +40,7 @@ function syntax(opts = defaultOptions) {
             }
             effects.enter("taggable");
             effects.enter("taggableMarker");
-            return consumeMarker;
+            return consumeMarker(code);
         }
         function consumeMarker(code) {
             if (!code || !typeMap.has(String.fromCodePoint(code))) {
