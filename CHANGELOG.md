@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0
+
+### Changes
+
+- Allowed characters in the Unicode character classes `N`, `Pd` and `Pc`, along with the existing support for `L` and `M`.
+
 ## 1.0.1
 
 ### Changes

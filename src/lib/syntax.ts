@@ -68,8 +68,8 @@ export function syntax(opts: Options = defaultOptions): Extension {
         markdownLineEnding(code) ||
         code === codes.eof ||
         !(allowEmail
-          ? /[\p{L}\p{M}@.]/u.test(String.fromCodePoint(code))
-          : /[\p{L}\p{M}]/u.test(String.fromCodePoint(code)))
+          ? /[\p{L}\p{N}\p{Pd}\p{Pc}\p{M}@.]/u.test(String.fromCodePoint(code))
+          : /[\p{L}\p{N}\p{Pd}\p{Pc}\p{M}]/u.test(String.fromCodePoint(code)))
       ) {
         if (valueCursor < 1) {
           return nok(code);
